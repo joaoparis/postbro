@@ -1,16 +1,6 @@
 # postbruh
 
-A new Flutter project.
+A cool "API platform for building and using APIs" bruh.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Goal:
+![image](https://user-images.githubusercontent.com/49085010/202580749-87631ced-6a25-4315-aab0-4a4ec7656673.png)
