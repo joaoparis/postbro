@@ -72,25 +72,25 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Row(
-          children: [
-            Text(widget.title, style: Theme.of(context).textTheme.headline1),
-            const SizedBox(
-              height: 50,
-              width: 30,
-              child: RiveAnimation.asset(
-                'assets/hoodie.riv',
-                fit: BoxFit.cover,
-              ),
-            )
-          ],
-        ),
-        actions: const [],
-      ),
+      // appBar: AppBar(
+      //   // Here we take the value from the MyHomePage object that was created by
+      //   // the App.build method, and use it to set our appbar title.
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   title: Row(
+      //     children: [
+      //       Text(widget.title, style: Theme.of(context).textTheme.headline1),
+      //       const SizedBox(
+      //         height: 50,
+      //         width: 30,
+      //         child: RiveAnimation.asset(
+      //           'assets/hoodie.riv',
+      //           fit: BoxFit.cover,
+      //         ),
+      //       )
+      //     ],
+      //   ),
+      //   actions: const [],
+      // ),
       // drawer: SideBar(),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -102,6 +102,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     flex: 1,
                     child: Column(
                       children: [
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(widget.title, style: Theme.of(context).textTheme.headline1),
+                              const SizedBox(
+                                height: 50,
+                                width: 30,
+                                child: RiveAnimation.asset(
+                                  'assets/hoodie.riv',
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                         Expanded(
                             flex: 1,
                             child: Row(children: [
