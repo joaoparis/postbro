@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'SideBar.dart';
+import 'package:rive/rive.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,16 +18,10 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color.fromRGBO(48, 47, 47, 1),
         backgroundColor: const Color.fromRGBO(87, 83, 83, 1),
         secondaryHeaderColor: Colors.white,
-        fontFamily: 'ComicSans',
+        fontFamily: 'Roboto',
         textTheme: const TextTheme(
-          headline1: TextStyle(
-              fontSize: 36.0,
-              fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(255, 189, 89, 1)),
-          headline3: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(255, 189, 89, 1)),
+          headline1: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold, color: Color.fromRGBO(255, 189, 89, 1)),
+          headline3: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Color.fromRGBO(255, 189, 89, 1)),
           headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.normal),
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
@@ -82,9 +76,22 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text(widget.title, style: Theme.of(context).textTheme.headline1),
+        title: Row(
+          children: [
+            Text(widget.title, style: Theme.of(context).textTheme.headline1),
+            const SizedBox(
+              height: 50,
+              width: 30,
+              child: RiveAnimation.asset(
+                'assets/hoodie.riv',
+                fit: BoxFit.cover,
+              ),
+            )
+          ],
+        ),
+        actions: const [],
       ),
-      drawer: SideBar(),
+      // drawer: SideBar(),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -100,15 +107,20 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Row(children: [
                               Expanded(
                                   flex: 1,
-                                  child: Container(color: Colors.green)),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.folder, color: Color.fromRGBO(255, 189, 89, 1)),
+                                    onPressed: () => {},
+                                  )),
                               Expanded(
                                   flex: 1,
-                                  child: Container(color: Colors.purple)),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.add, color: Color.fromRGBO(255, 189, 89, 1)),
+                                    onPressed: () => {},
+                                  )),
                             ])),
                         Expanded(
                             flex: 1,
-                            child: Text("Collections",
-                                style: Theme.of(context).textTheme.headline3)),
+                            child: Center(child: Text("Collections", style: Theme.of(context).textTheme.headline3))),
                       ],
                     )),
                 Expanded(flex: 3, child: Container(color: Colors.black)),
