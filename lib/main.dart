@@ -20,13 +20,23 @@ class MyApp extends StatelessWidget {
         secondaryHeaderColor: Colors.white,
         fontFamily: 'Roboto',
         textTheme: const TextTheme(
-          headline1: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold, color: Color.fromRGBO(255, 189, 89, 1)),
-          headline3: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Color.fromRGBO(255, 189, 89, 1)),
+          headline1: TextStyle(
+              fontSize: 36.0,
+              fontWeight: FontWeight.bold,
+              color: Color.fromRGBO(255, 189, 89, 1)),
+          headline3: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+              color: Color.fromRGBO(255, 189, 89, 1)),
+          headline5: TextStyle(
+              fontSize: 10.0,
+              fontWeight: FontWeight.bold,
+              color: Color.fromRGBO(255, 189, 89, 1)),
           headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.normal),
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),
-      home: const MyHomePage(title: 'PostBruh'),
+      home: const MyHomePage(title: 'postbruh'),
     );
   }
 }
@@ -49,8 +59,24 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+const List<String> list = <String>['GET', 'POST', 'DELETE', 'PUT'];
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  late TextEditingController _controller;
+  String dropdownValue = list.first;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -106,7 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(widget.title, style: Theme.of(context).textTheme.headline1),
+                              Text(widget.title,
+                                  style: Theme.of(context).textTheme.headline1),
                               const SizedBox(
                                 height: 50,
                                 width: 30,
@@ -124,19 +151,25 @@ class _MyHomePageState extends State<MyHomePage> {
                               Expanded(
                                   flex: 1,
                                   child: IconButton(
-                                    icon: const Icon(Icons.folder, color: Color.fromRGBO(255, 189, 89, 1)),
+                                    icon: const Icon(Icons.folder,
+                                        color: Color.fromRGBO(255, 189, 89, 1)),
                                     onPressed: () => {},
                                   )),
                               Expanded(
                                   flex: 1,
                                   child: IconButton(
-                                    icon: const Icon(Icons.add, color: Color.fromRGBO(255, 189, 89, 1)),
+                                    icon: const Icon(Icons.add,
+                                        color: Color.fromRGBO(255, 189, 89, 1)),
                                     onPressed: () => {},
                                   )),
                             ])),
                         Expanded(
                             flex: 1,
-                            child: Center(child: Text("Collections", style: Theme.of(context).textTheme.headline3))),
+                            child: Center(
+                                child: Text("Collections",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline3))),
                       ],
                     )),
                 Expanded(flex: 3, child: Container(color: Colors.black)),
@@ -145,12 +178,131 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             flex: 4,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                   flex: 1,
-                  child: Container(
-                    color: Colors.amber,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                          flex: 5,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "current_collection_name",
+                                      style:
+                                          Theme.of(context).textTheme.headline5,
+                                    ),
+                                    Text(
+                                      "current_request_name",
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    DropdownButton<String>(
+                                      value: dropdownValue,
+                                      icon: const Icon(Icons.arrow_downward),
+                                      elevation: 16,
+                                      style: const TextStyle(
+                                          color:
+                                              Color.fromRGBO(255, 189, 89, 1)),
+                                      underline: Container(
+                                          height: 0, color: Colors.transparent),
+                                      onChanged: (String? value) {
+                                        // This is called when the user selects an item.
+                                        setState(() {
+                                          dropdownValue = value!;
+                                        });
+                                      },
+                                      items: list.map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                    const Expanded(
+                                      child: TextField(
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          hintText: 'Input url...',
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )),
+                      Expanded(
+                          flex: 1,
+                          child: Center(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    padding: const EdgeInsets.all(20.0),
+                                    backgroundColor: Colors.black,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Save ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline3),
+                                      const Icon(Icons.save,
+                                          color:
+                                              Color.fromRGBO(255, 189, 89, 1))
+                                    ],
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    padding: const EdgeInsets.all(20.0),
+                                    backgroundColor: Colors.black,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Send ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline3),
+                                      const Icon(Icons.send,
+                                          color:
+                                              Color.fromRGBO(255, 189, 89, 1)),
+                                    ],
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                            ],
+                          ))),
+                    ],
                   ),
                 ),
                 Expanded(
