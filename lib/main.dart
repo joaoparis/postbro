@@ -176,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(flex: 1, child: Container(color: Colors.purple)),
               ])),
           Expanded(
-            flex: 4,
+            flex: 3,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -186,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
-                          flex: 5,
+                          flex: 3,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -306,17 +306,83 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Expanded(
-                  flex: 2,
-                  child: Container(
-                    color: Colors.red,
-                  ),
-                ),
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "request",
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
+                          Row(
+                            children: [
+                              TextButton(
+                                  onPressed: () {},
+                                  child: const Text(
+                                    "body",
+                                  ))
+                            ],
+                          ),
+                          const Expanded(
+                            child: TextField(
+                              textAlign: TextAlign.start,
+                              textAlignVertical: TextAlignVertical.top,
+                              maxLines: null,
+                              expands: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Input url...',
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )),
                 Expanded(
                   flex: 2,
-                  child: Container(
-                    color: Colors.green,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "reponse",
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "body",
+                                ))
+                          ],
+                        ),
+                        const Expanded(
+                          child: TextField(
+                            textAlign: TextAlign.start,
+                            textAlignVertical: TextAlignVertical.top,
+                            maxLines: null,
+                            expands: true,
+                            toolbarOptions: ToolbarOptions(
+                              copy: true,
+                              cut: true,
+                              paste: false,
+                              selectAll: true,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: 'response body',
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           )
