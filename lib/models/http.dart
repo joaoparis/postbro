@@ -7,12 +7,15 @@ class Http {
   var client = HttpClient();
 
   Future<String?> request(
-      String host, int port, String path, RequestTypes reqType) async {
+      String host, int port, String path, RequestTypes reqType, Map headers) async {
     try {
       HttpClientRequest req;
       req = await client.open(reqType.name, host, port, path);
-      //TODO: figure out best way to set headers pragmatically
-      //req.headers.set(name, value);
+
+      headers.forEach((key, value) {
+        req.headers.set(key, value);
+      });
+      
       var response = await req.close();
 
       await for (var contents in response.transform(const Utf8Decoder())) {
@@ -23,4 +26,6 @@ class Http {
       client.close();
     }
   }
+
+  
 }
